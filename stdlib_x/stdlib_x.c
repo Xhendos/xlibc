@@ -1,4 +1,6 @@
 #include "stdlib_x.h"					/* Contains div_t defenition */
+#include <assert.h>
+#include "assert_x.h"
 
 char is_digit(const char c)
 {
@@ -89,5 +91,12 @@ long int _labs(long int j)
 {
         if(!(j >> 31)) return j;                        /* If the msb is a 0 (positive number) return it */               
         return (~j) + 1;                                /* If the msb is a 1 execute a two's complement on the number and return it */
+}
+
+int main()
+{
+	int i = 5;
+	_assert(i < 3);
+	printf("i is %d\n", 5);
 }
 
