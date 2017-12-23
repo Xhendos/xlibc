@@ -66,21 +66,28 @@ int _abs(int j)
  */
 _div_t _div(int numer, int denom)
 {
-	_div_t ret;
-	int _quot;
-
+	_div_t ret;					/* Structure containing the quotient and remainder to return */
+	int _quot;					/* Temporarry quotient used in the loop to test each value */
+							/* While temporarry quotient multiplied by the denominator is less than numerator */
 	for(_quot = 0; (denom * _quot) < numer; _quot++);
 	
-	if((_quot * denom) > numer)
+	if((_quot * denom) > numer)			/* If quotient multiplied by denominator is greater than the numerator (like example) */
 	{
-		ret.quot = --_quot;
-		ret.rem = (numer - (_quot * denom));
-	} else
-	{
-		ret.quot = _quot;
+		ret.quot = --_quot;			/* Substract 1 from the quotient and store in the structure */
+		ret.rem = (numer - (_quot * denom));	/* Calculate the remainder and store in the structure */
+	} else	
+	{						/* Denomerator * quotient is exactly the numerator */
+		ret.quot = _quot;			
 		ret.rem = 0;		
 	}
 	
-	return ret;
+	return ret; 
+}
+
+/* For more information see _abs() */
+long int _labs(long int j)
+{
+        if(!(j >> 31)) return j;                        /* If the msb is a 0 (positive number) return it */               
+        return (~j) + 1;                                /* If the msb is a 1 execute a two's complement on the number and return it */
 }
 
